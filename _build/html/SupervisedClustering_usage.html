@@ -1,0 +1,1656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SupervisedClustering Usage &#8212; SupervisedClustering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SupervisedClustering_usage';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/supervised_clustering_logo.jpg" class="logo__image only-light" alt="SupervisedClustering - Home"/>
+    <script>document.write(`<img src="_static/supervised_clustering_logo.jpg" class="logo__image only-dark" alt="SupervisedClustering - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>SupervisedClustering Usage</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/SupervisedClustering" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/SupervisedClustering/issues/new?title=Issue%20on%20page%20%2FSupervisedClustering_usage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/SupervisedClustering_usage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SupervisedClustering Usage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing"><strong>Data processing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-estimators-usage"><strong>Clustering estimators usage</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-estimators-usage-with-pipelines"><strong>Clustering estimators usage with pipelines</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="supervisedclustering-usage">
+<h1><strong>SupervisedClustering Usage</strong><a class="headerlink" href="#supervisedclustering-usage" title="Link to this heading">#</a></h1>
+<section id="requirements">
+<h2><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">SupervisedClustering</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PyMachineLearning.preprocessing</span> <span class="kn">import</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">imputer</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">features_selector</span>
+<span class="kn">from</span> <span class="nn">PyMachineLearning.evaluation</span> <span class="kn">import</span> <span class="n">SimpleEvaluation</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span>  <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span>
+<span class="kn">from</span> <span class="nn">SupervisedClustering.models</span> <span class="kn">import</span> <span class="n">FastKmedoidsEstimator</span><span class="p">,</span> <span class="n">KFoldFastKmedoidsEstimator</span><span class="p">,</span> <span class="n">KmeansEstimator</span><span class="p">,</span> <span class="n">MiniBatchKmeansEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">processing</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">columns_to_exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;sq_mt_allotment&#39;</span><span class="p">,</span><span class="s1">&#39;floor&#39;</span><span class="p">,</span> <span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="s1">&#39;district&#39;</span><span class="p">]</span> 
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">columns_to_exclude</span><span class="p">))</span>
+    <span class="n">binary_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_renewal_needed&#39;</span><span class="p">,</span> <span class="s1">&#39;has_lift&#39;</span><span class="p">,</span> <span class="s1">&#39;is_exterior&#39;</span><span class="p">,</span> <span class="s1">&#39;has_parking&#39;</span><span class="p">]</span>
+    <span class="n">multi_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy_certificate&#39;</span><span class="p">,</span> <span class="s1">&#39;house_type&#39;</span><span class="p">]</span>
+    <span class="n">quant_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span><span class="p">]</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">)</span>
+    <span class="n">encoded_arr</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span><span class="p">])</span>
+    <span class="n">cat_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">encoded_arr</span><span class="p">)</span>
+    <span class="n">cat_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span>  <span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span>
+    <span class="n">cat_df</span> <span class="o">=</span> <span class="n">cat_df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+    <span class="n">quant_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">quant_cols</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">quant_df</span><span class="p">,</span> <span class="n">cat_df</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="s1">&#39;buy_price&#39;</span>
+    <span class="n">quant_predictors</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">quant_cols</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">response</span><span class="p">]</span>
+    <span class="n">binary_predictors</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">binary_cols</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">response</span><span class="p">]</span>
+    <span class="n">multi_predictors</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">multi_cols</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">response</span><span class="p">]</span>
+    <span class="n">cat_predictors</span> <span class="o">=</span> <span class="n">binary_predictors</span> <span class="o">+</span> <span class="n">multi_predictors</span>
+    <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quant_predictors</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_predictors</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi_predictors</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">quant_predictors</span><span class="p">,</span> <span class="n">cat_predictors</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-processing">
+<h2><strong>Data processing</strong><a class="headerlink" href="#data-processing" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;madrid_houses.csv&#39;</span><span class="p">)</span>
+<span class="n">madrid_houses_df</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">quant_predictors</span><span class="p">,</span> <span class="n">cat_predictors</span> <span class="o">=</span> <span class="n">processing</span><span class="p">(</span><span class="n">madrid_houses_df</span><span class="p">)</span>
+<span class="n">predictors</span> <span class="o">=</span> <span class="n">quant_predictors</span> <span class="o">+</span> <span class="n">cat_predictors</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr > th,
+.dataframe > tbody > tr > td {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 11)</small><table border="1" class="dataframe"><thead><tr><th>sq_mt_built</th><th>n_rooms</th><th>n_bathrooms</th><th>n_floors</th><th>buy_price</th><th>is_renewal_needed</th><th>has_lift</th><th>is_exterior</th><th>has_parking</th><th>energy_certificate</th><th>house_type</th></tr><tr><td>f64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td></tr></thead><tbody><tr><td>64.0</td><td>2</td><td>1</td><td>1</td><td>85000</td><td>0</td><td>0</td><td>1</td><td>0</td><td>4</td><td>0</td></tr><tr><td>70.0</td><td>3</td><td>1</td><td>1</td><td>129900</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>94.0</td><td>2</td><td>2</td><td>1</td><td>144247</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>64.0</td><td>2</td><td>1</td><td>1</td><td>109900</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>108.0</td><td>2</td><td>2</td><td>1</td><td>260000</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">predictors</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">response</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clustering-estimators-usage">
+<h2><strong>Clustering estimators usage</strong><a class="headerlink" href="#clustering-estimators-usage" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FastKmedoidsEstimator</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the Fast-K-medoids-Estimator based on Fast-K-medoids and Sklearn estimators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimators</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                    <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                    <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">fast_VG</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">VG_sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VG_n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            estimators: a dictionary with the sklearn estimators (single models or pipelines) to be used in each clusters (keys: cluster indexes, values: estimators initialized).</span>
+<span class="sd">            n_clusters: the number of clusters.</span>
+<span class="sd">            method: the k-medoids clustering method. Must be in [&#39;pam&#39;, &#39;alternate&#39;]. PAM is the classic one, more accurate but slower.</span>
+<span class="sd">            init: the k-medoids initialization method. Must be in [&#39;heuristic&#39;, &#39;random&#39;]. Heuristic is the classic one, smarter burt slower.</span>
+<span class="sd">            max_iter: the maximum number of iterations run by k-medodis.</span>
+<span class="sd">            frac_sample_size: the sample size in proportional terms.</span>
+<span class="sd">            p1, p2, p3: number of quantitative, binary and multi-class variables in the considered data matrix, respectively. Must be a non negative integer.</span>
+<span class="sd">            d1: name of the distance to be computed for quantitative variables. Must be an string in [&#39;euclidean&#39;, &#39;minkowski&#39;, &#39;canberra&#39;, &#39;mahalanobis&#39;, &#39;robust_mahalanobis&#39;]. </span>
+<span class="sd">            d2: name of the distance to be computed for binary variables. Must be an string in [&#39;sokal&#39;, &#39;jaccard&#39;].</span>
+<span class="sd">            d3: name of the distance to be computed for multi-class variables. Must be an string in [&#39;matching&#39;].</span>
+<span class="sd">            q: the parameter that defines the Minkowski distance. Must be a positive integer.</span>
+<span class="sd">            robust_maha_method: the method to be used for computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            alpha : a real number in [0,1] that is used if `method` is &#39;trimmed&#39; or &#39;winsorized&#39;. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            epsilon: parameter used by the Delvin algorithm that is used when computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            n_iters: maximum number of iterations used by the Delvin algorithm. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            fast_VG: whether the geometric variability estimation will be full (False) or fast (True).</span>
+<span class="sd">            VG_sample_size: sample size to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            VG_n_samples: number of samples to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">            y_type: the type of response variable. Must be in [&#39;quantitative&#39;, &#39;binary&#39;, &#39;multiclass&#39;].</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set params method: for setting params properly.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            params: a dictionary with params as values and params keys as names, following the sklearn conventions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>   
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the Fast KMedoids algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>  
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting the response variable for `X`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a pandas/polars data-frame or a numpy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KFoldFastKmedoidsEstimator</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the KFold-Fast-K-medoids-Estimator based on KFold-Fast-K-medoids and Sklearn estiamators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimators</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                        <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                        <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">fast_VG</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">VG_sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VG_n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                        <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kfold_random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">y_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructor method.</span>
+<span class="sd">            </span>
+<span class="sd">            Parameters:</span>
+<span class="sd">                estimators: a dictionary with the sklearn estimators (single models or pipelines) to be used in each clusters (keys: cluster indexes, values: estimators initialized).</span>
+<span class="sd">                n_clusters: the number of clusters.</span>
+<span class="sd">                method: the k-medoids clustering method. Must be in [&#39;pam&#39;, &#39;alternate&#39;]. PAM is the classic one, more accurate but slower.</span>
+<span class="sd">                init: the k-medoids initialization method. Must be in [&#39;heuristic&#39;, &#39;random&#39;]. Heuristic is the classic one, smarter burt slower.</span>
+<span class="sd">                max_iter: the maximum number of iterations run by k-medodis.</span>
+<span class="sd">                frac_sample_size: the sample size in proportional terms.</span>
+<span class="sd">                p1, p2, p3: number of quantitative, binary and multi-class variables in the considered data matrix, respectively. Must be a non negative integer.</span>
+<span class="sd">                d1: name of the distance to be computed for quantitative variables. Must be an string in [&#39;euclidean&#39;, &#39;minkowski&#39;, &#39;canberra&#39;, &#39;mahalanobis&#39;, &#39;robust_mahalanobis&#39;]. </span>
+<span class="sd">                d2: name of the distance to be computed for binary variables. Must be an string in [&#39;sokal&#39;, &#39;jaccard&#39;].</span>
+<span class="sd">                d3: name of the distance to be computed for multi-class variables. Must be an string in [&#39;matching&#39;].</span>
+<span class="sd">                q: the parameter that defines the Minkowski distance. Must be a positive integer.</span>
+<span class="sd">                robust_maha_method: the method to be used for computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">                alpha : a real number in [0,1] that is used if `method` is &#39;trimmed&#39; or &#39;winsorized&#39;. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">                epsilon: parameter used by the Delvin algorithm that is used when computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">                n_iters: maximum number of iterations used by the Delvin algorithm. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">                fast_VG: whether the geometric variability estimation will be full (False) or fast (True).</span>
+<span class="sd">                VG_sample_size: sample size to be used to make the estimation of the geometric variability.</span>
+<span class="sd">                VG_n_samples: number of samples to be used to make the estimation of the geometric variability.</span>
+<span class="sd">                random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">                y_type: the type of response variable. Must be in [&#39;quantitative&#39;, &#39;binary&#39;, &#39;multiclass&#39;].</span>
+<span class="sd">                n_splits: number of folds to be used.</span>
+<span class="sd">                shuffle: whether data is shuffled before applying KFold or not, must be in [True, False]. </span>
+<span class="sd">                kfold_random_state: the random seed for KFold if shuffle = True.</span>
+<span class="sd">            &quot;&quot;&quot;</span>  
+    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set params method: for setting params properly.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            params: a dictionary with params as values and params keys as names, following the sklearn conventions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the KFold Fast KMedoids algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting the response variable for `X`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a pandas/polars data-frame or a numpy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KmeansEstimator</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">ClusterMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the K-means-Estimator based on K-means and Sklearn estimators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimators</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            estimators: a dictionary with the sklearn estimators (single models or pipelines) to be used in each clusters (keys: cluster indexes, values: estimators initialized).</span>
+<span class="sd">            n_clusters: the number of clusters.</span>
+<span class="sd">            random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>  
+    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set params method: for setting params properly.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            params: a dictionary with params as values and params keys as names, following the sklearn conventions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>   
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the KMeans algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting the response variable for `X`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a pandas/polars data-frame or a numpy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MiniBatchKmeansEstimator</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">ClusterMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the Mini Batch K-means-Estimator based on K-means and Sklearn estimators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimators</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            estimators: a dictionary with the sklearn estimators (single models or pipelines) to be used in each clusters (keys: cluster indexes, values: estimators initialized).</span>
+<span class="sd">            n_clusters: the number of clusters.</span>
+<span class="sd">            random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>  
+    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set params method: for setting params properly.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            params: a dictionary with params as values and params keys as names, following the sklearn conventions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>   
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the Mini Batch KMeans algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting the response variable for `X`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a pandas/polars data-frame or a numpy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_models</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;XGB&#39;</span><span class="p">:</span> <span class="n">XGBRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+               <span class="s1">&#39;RF&#39;</span><span class="p">:</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)}</span>
+
+<span class="n">clusters_RF</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">clusters_XGB</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">estimators_RF_XGB</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="n">meta_models</span><span class="p">[</span><span class="s1">&#39;RF&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_RF</span><span class="p">}</span>
+<span class="n">estimators_RF_XGB</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">j</span><span class="p">:</span> <span class="n">meta_models</span><span class="p">[</span><span class="s1">&#39;XGB&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_XGB</span><span class="p">})</span> 
+
+<span class="n">fast_kmedoids_estimator</span> <span class="o">=</span> <span class="n">FastKmedoidsEstimator</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators_RF_XGB</span><span class="p">,</span> 
+                                                <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                                                <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>  <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> 
+                                                <span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="n">p3</span><span class="p">,</span> 
+                                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+                                                <span class="n">y_type</span><span class="o">=</span><span class="s1">&#39;quantitative&#39;</span><span class="p">)</span>
+
+<span class="n">kfold_fast_kmedoids_estimator</span> <span class="o">=</span> <span class="n">KFoldFastKmedoidsEstimator</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators_RF_XGB</span><span class="p">,</span> 
+                                                           <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                                                           <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>  <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> 
+                                                           <span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="n">p3</span><span class="p">,</span> 
+                                                           <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                           <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+                                                           <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kfold_random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                                           <span class="n">y_type</span><span class="o">=</span><span class="s1">&#39;quantitative&#39;</span><span class="p">)</span>
+
+<span class="n">kmeans_estimator</span> <span class="o">=</span> <span class="n">KmeansEstimator</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators_RF_XGB</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">minibach_kmeans_estimator</span> <span class="o">=</span> <span class="n">MiniBatchKmeansEstimator</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators_RF_XGB</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">Y_test_hat</span> <span class="o">=</span> <span class="n">fast_kmedoids_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------------------------------------</span><span class="se">\n\n</span><span class="s1">Fast-Kmedoids Estimator:&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;MAE = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">Y_test_hat</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="o">=</span><span class="n">Y_test</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (244, 244)
+Num.Clusters: 2. Clusters proportions: [0.6890947 0.3109053]
+
+-----------------------------------------
+
+Fast-Kmedoids Estimator: MAE = 188007.61
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold_fast_kmedoids_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y_train</span><span class="p">)</span>
+<span class="n">Y_test_hat</span> <span class="o">=</span> <span class="n">kfold_fast_kmedoids_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------------------------------------</span><span class="se">\n\n</span><span class="s1">KFold-Fast-Kmedoids Estimator:&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;MAE = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">Y_test_hat</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="o">=</span><span class="n">Y_test</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Num.Folds: 10. Fold size: 1630.
+Distance matrix size: 25 (0.015*1630) 
+Clustering Fold 0
+Distance matrix size: (24, 24)
+Clustering Fold 1
+Distance matrix size: (24, 24)
+Clustering Fold 2
+Distance matrix size: (24, 24)
+Clustering Fold 3
+Distance matrix size: (24, 24)
+Clustering Fold 4
+Distance matrix size: (24, 24)
+Clustering Fold 5
+Distance matrix size: (24, 24)
+Clustering Fold 6
+Distance matrix size: (24, 24)
+Clustering Fold 7
+Distance matrix size: (24, 24)
+Clustering Fold 8
+Distance matrix size: (24, 24)
+Clustering Fold 9
+Distance matrix size: (24, 24)
+X_medoids size: (20, 11)
+Distance matrix size: (16, 16)
+Num.Clusters: 2. Clusters proportions: [0.86015702 0.13984298]
+
+-----------------------------------------
+
+KFold-Fast-Kmedoids Estimator: MAE = 187685.45
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y_train</span><span class="p">)</span>
+<span class="n">Y_test_hat</span> <span class="o">=</span> <span class="n">kmeans_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------------------------------------</span><span class="se">\n\n</span><span class="s1">KMeans Estimator:&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;MAE = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">Y_test_hat</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="o">=</span><span class="n">Y_test</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clusters proportions: [0.87794406 0.12205594]
+
+-----------------------------------------
+
+KMeans Estimator: MAE = 194640.46
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minibach_kmeans_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y_train</span><span class="p">)</span>
+<span class="n">Y_test_hat</span> <span class="o">=</span> <span class="n">minibach_kmeans_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">-----------------------------------------</span><span class="se">\n\n</span><span class="s1">MiniBatch-KMeans Estimator:&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;MAE = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_pred</span><span class="o">=</span><span class="n">Y_test_hat</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="o">=</span><span class="n">Y_test</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clusters weights (proportions): [0.87315996 0.12684004]
+
+-----------------------------------------
+
+MiniBatch-KMeans Estimator: MAE = 193026.66
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clustering-estimators-usage-with-pipelines">
+<h2><strong>Clustering estimators usage with pipelines</strong><a class="headerlink" href="#clustering-estimators-usage-with-pipelines" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;madrid_houses_NaNs.csv&#39;</span><span class="p">)</span>
+<span class="n">madrid_houses_df</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">quant_predictors</span><span class="p">,</span> <span class="n">cat_predictors</span> <span class="o">=</span> <span class="n">processing</span><span class="p">(</span><span class="n">madrid_houses_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">predictors</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">response</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="c1"># The Null values of the Polars columns that are define as Object type by Pandas are treated as None and not as NaN (what we would like)</span>
+<span class="c1"># The avoid this behavior the next step is necessary</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">111</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quant_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">imputer</span><span class="p">(</span><span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                           <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">())</span>
+                          <span class="p">])</span>
+
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;encoder&#39;</span><span class="p">,</span> <span class="n">encoder</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">)),</span>
+                         <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">imputer</span><span class="p">(</span><span class="n">apply</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+                        <span class="p">])</span>
+
+<span class="n">quant_cat_preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;quant&#39;</span><span class="p">,</span> <span class="n">quant_pipeline</span><span class="p">,</span> <span class="n">quant_predictors</span><span class="p">),</span>
+                                                          <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">cat_predictors</span><span class="p">)])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_models</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;XGB&#39;</span><span class="p">:</span> <span class="n">XGBRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+               <span class="s1">&#39;RF&#39;</span><span class="p">:</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)}</span>
+
+<span class="n">clusters_RF</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">clusters_XGB</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">max_n_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters_RF</span> <span class="o">+</span> <span class="n">clusters_XGB</span><span class="p">)</span>
+
+<span class="n">estimators_RF_XGB</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="n">meta_models</span><span class="p">[</span><span class="s1">&#39;RF&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_RF</span><span class="p">}</span>
+<span class="n">estimators_RF_XGB</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">j</span><span class="p">:</span> <span class="n">meta_models</span><span class="p">[</span><span class="s1">&#39;XGB&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_XGB</span><span class="p">})</span> 
+
+<span class="n">fast_kmedoids_estimator</span> <span class="o">=</span> <span class="n">FastKmedoidsEstimator</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators_RF_XGB</span><span class="p">,</span> 
+                                                    <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>  <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> 
+                                                    <span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="n">p3</span><span class="p">,</span> 
+                                                    <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                    <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+                                                    <span class="n">y_type</span><span class="o">=</span><span class="s1">&#39;quantitative&#39;</span><span class="p">)</span>
+
+<span class="n">pipeline_fast_kmedoids_estimator</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;preprocessing&#39;</span><span class="p">,</span> <span class="n">quant_cat_preprocessing</span><span class="p">),</span>
+                                             <span class="p">(</span><span class="s1">&#39;features_selector&#39;</span><span class="p">,</span> <span class="n">features_selector</span><span class="p">()),</span>
+                                             <span class="p">(</span><span class="s1">&#39;clustering_model&#39;</span><span class="p">,</span> <span class="n">fast_kmedoids_estimator</span><span class="p">)</span>
+                                            <span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocessing_param_grid</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+
+    <span class="c1"># Fix Grid</span>
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;preprocessing__quant__imputer__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;preprocessing__quant__imputer__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;simple_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;simple_median&#39;</span><span class="p">,</span> <span class="s1">&#39;iterative_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;iterative_median&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;preprocessing__cat__imputer__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;preprocessing__cat__imputer__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;simple_most_frequent&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;preprocessing__quant__scaler__apply&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;preprocessing__quant__scaler__apply&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]),</span>
+        <span class="s1">&#39;preprocessing__cat__encoder__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;preprocessing__cat__encoder__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ordinal&#39;</span><span class="p">]),</span>  <span class="c1"># with FastKmedoids only ordinal is suitable</span>
+        <span class="s1">&#39;features_selector__apply&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;features_selector__apply&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">])</span> <span class="c1"># with FastKmedoids we must not select predictors</span>
+        <span class="p">}</span>
+
+    <span class="c1"># Conditioned Grid</span>
+    <span class="k">if</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;features_selector__apply&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+
+        <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;features_selector__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;features_selector__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Fpr_f_reg&#39;</span><span class="p">,</span> <span class="s1">&#39;Fdr_f_reg&#39;</span><span class="p">])})</span>
+        
+    <span class="k">if</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;preprocessing__quant__scaler__apply&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    
+        <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;preprocessing__quant__scaler__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;preprocessing__quant__scaler__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="s1">&#39;min-max&#39;</span><span class="p">])})</span>
+
+    <span class="k">return</span> <span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">param_grid_clustering_model</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;clustering_model__n_clusters&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__n_clusters&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+        <span class="s1">&#39;clustering_model__method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="s1">&#39;alternate&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;clustering_model__init&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__init&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="s1">&#39;k-medoids++&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;clustering_model__frac_sample_size&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__frac_sample_size&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">]),</span>
+        <span class="s1">&#39;clustering_model__d1&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__d1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="s1">&#39;mahalanobis&#39;</span><span class="p">,</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="s1">&#39;minkowski&#39;</span><span class="p">,</span> <span class="s1">&#39;canberra&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;clustering_model__d2&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__d2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="s1">&#39;sokal&#39;</span><span class="p">])</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;clustering_model__d1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">:</span>
+
+        <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s1">&#39;clustering_model__robust_maha_method&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__robust_maha_method&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="s1">&#39;winsorized&#39;</span><span class="p">,</span> <span class="s1">&#39;MAD&#39;</span><span class="p">]),</span>
+            <span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;clustering_model__robust_maha_method&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="s1">&#39;winsorized&#39;</span><span class="p">]:</span>
+
+                <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                        <span class="s1">&#39;clustering_model__alpha&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;clustering_model__alpha&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]),</span>
+                    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">param_grid_RF_XGB</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="n">preprocessing_param_grid</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+    <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">param_grid_clustering_model</span><span class="p">(</span><span class="n">trial</span><span class="p">))</span>
+
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">param_grid</span><span class="p">[</span><span class="s1">&#39;clustering_model__n_clusters&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">):</span> <span class="c1"># Create grids only for the effective clusters</span>
+
+        <span class="c1"># Grids for RF</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_RF</span><span class="p">:</span>
+
+            <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__n_estimators&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__n_estimators&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__max_depth&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__max_depth&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__min_samples_split&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__min_samples_split&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__min_samples_leaf&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__min_samples_leaf&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+            <span class="p">})</span>
+
+        <span class="c1"># Grids for XGB</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">clusters_XGB</span><span class="p">:</span>  
+
+            <span class="n">param_grid</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__max_depth&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__max_depth&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__lambda&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__lambda&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__n_estimators&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__n_estimators&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">180</span><span class="p">]),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__eta&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__eta&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__alpha&#39;</span><span class="p">:</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clustering_model__estimators__</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">__alpha&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_eval</span> <span class="o">=</span> <span class="n">SimpleEvaluation</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline_fast_kmedoids_estimator</span><span class="p">,</span>  
+                                <span class="n">cv</span><span class="o">=</span><span class="n">inner</span><span class="p">,</span> 
+                                <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid_RF_XGB</span><span class="p">,</span>
+                                <span class="n">search_method</span><span class="o">=</span><span class="s1">&#39;optuna&#39;</span><span class="p">,</span>
+                                <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span> 
+                                <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;maximize&#39;</span><span class="p">,</span> 
+                                <span class="n">n_trials</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                                <span class="n">random_state</span><span class="o">=</span><span class="mi">666</span><span class="p">)</span>
+
+<span class="n">simple_eval</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preprocessing__quant__imputer__method</th>
+      <th>preprocessing__cat__imputer__method</th>
+      <th>preprocessing__quant__scaler__apply</th>
+      <th>preprocessing__cat__encoder__method</th>
+      <th>features_selector__apply</th>
+      <th>preprocessing__quant__scaler__method</th>
+      <th>clustering_model__n_clusters</th>
+      <th>clustering_model__method</th>
+      <th>clustering_model__init</th>
+      <th>clustering_model__frac_sample_size</th>
+      <th>clustering_model__d1</th>
+      <th>clustering_model__d2</th>
+      <th>clustering_model__estimators__0__n_estimators</th>
+      <th>clustering_model__estimators__0__max_depth</th>
+      <th>clustering_model__estimators__0__min_samples_split</th>
+      <th>clustering_model__estimators__0__min_samples_leaf</th>
+      <th>clustering_model__estimators__1__max_depth</th>
+      <th>clustering_model__estimators__1__lambda</th>
+      <th>clustering_model__estimators__1__n_estimators</th>
+      <th>clustering_model__estimators__1__eta</th>
+      <th>clustering_model__estimators__1__alpha</th>
+      <th>clustering_model__estimators__2__n_estimators</th>
+      <th>clustering_model__estimators__2__max_depth</th>
+      <th>clustering_model__estimators__2__min_samples_split</th>
+      <th>clustering_model__estimators__2__min_samples_leaf</th>
+      <th>clustering_model__estimators__3__max_depth</th>
+      <th>clustering_model__estimators__3__lambda</th>
+      <th>clustering_model__estimators__3__n_estimators</th>
+      <th>clustering_model__estimators__3__eta</th>
+      <th>clustering_model__estimators__3__alpha</th>
+      <th>clustering_model__estimators__4__n_estimators</th>
+      <th>clustering_model__estimators__4__max_depth</th>
+      <th>clustering_model__estimators__4__min_samples_split</th>
+      <th>clustering_model__estimators__4__min_samples_leaf</th>
+      <th>clustering_model__robust_maha_method</th>
+      <th>score</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>simple_mean</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>standard</td>
+      <td>3</td>
+      <td>pam</td>
+      <td>heuristic</td>
+      <td>0.030</td>
+      <td>minkowski</td>
+      <td>sokal</td>
+      <td>55</td>
+      <td>40</td>
+      <td>12</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0.5</td>
+      <td>30</td>
+      <td>0.28</td>
+      <td>0.54</td>
+      <td>51.0</td>
+      <td>40.0</td>
+      <td>4.0</td>
+      <td>11.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-189925.033692</td>
+      <td>73.682768</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>simple_mean</td>
+      <td>simple_most_frequent</td>
+      <td>False</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>pam</td>
+      <td>k-medoids++</td>
+      <td>0.030</td>
+      <td>robust_mahalanobis</td>
+      <td>jaccard</td>
+      <td>77</td>
+      <td>20</td>
+      <td>7</td>
+      <td>22</td>
+      <td>50</td>
+      <td>0.2</td>
+      <td>30</td>
+      <td>0.12</td>
+      <td>0.84</td>
+      <td>54.0</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>22.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MAD</td>
+      <td>-193352.354000</td>
+      <td>93.964026</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>simple_median</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>min-max</td>
+      <td>2</td>
+      <td>pam</td>
+      <td>k-medoids++</td>
+      <td>0.015</td>
+      <td>mahalanobis</td>
+      <td>sokal</td>
+      <td>62</td>
+      <td>7</td>
+      <td>9</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0.5</td>
+      <td>150</td>
+      <td>0.06</td>
+      <td>0.61</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-194842.623889</td>
+      <td>66.683697</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>iterative_mean</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>min-max</td>
+      <td>2</td>
+      <td>alternate</td>
+      <td>random</td>
+      <td>0.020</td>
+      <td>mahalanobis</td>
+      <td>sokal</td>
+      <td>80</td>
+      <td>5</td>
+      <td>5</td>
+      <td>19</td>
+      <td>10</td>
+      <td>0.4</td>
+      <td>100</td>
+      <td>0.16</td>
+      <td>0.75</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-198370.937385</td>
+      <td>65.778179</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>simple_mean</td>
+      <td>simple_most_frequent</td>
+      <td>False</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>alternate</td>
+      <td>heuristic</td>
+      <td>0.020</td>
+      <td>mahalanobis</td>
+      <td>sokal</td>
+      <td>77</td>
+      <td>7</td>
+      <td>10</td>
+      <td>17</td>
+      <td>40</td>
+      <td>0.5</td>
+      <td>150</td>
+      <td>0.26</td>
+      <td>0.87</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-198629.430744</td>
+      <td>88.212142</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>simple_median</td>
+      <td>simple_most_frequent</td>
+      <td>False</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>pam</td>
+      <td>random</td>
+      <td>0.030</td>
+      <td>minkowski</td>
+      <td>sokal</td>
+      <td>84</td>
+      <td>3</td>
+      <td>15</td>
+      <td>11</td>
+      <td>30</td>
+      <td>0.2</td>
+      <td>70</td>
+      <td>0.12</td>
+      <td>0.91</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-209762.624869</td>
+      <td>77.228467</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>iterative_mean</td>
+      <td>simple_most_frequent</td>
+      <td>False</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>alternate</td>
+      <td>heuristic</td>
+      <td>0.015</td>
+      <td>canberra</td>
+      <td>sokal</td>
+      <td>75</td>
+      <td>20</td>
+      <td>4</td>
+      <td>17</td>
+      <td>50</td>
+      <td>0.5</td>
+      <td>30</td>
+      <td>0.18</td>
+      <td>0.21</td>
+      <td>112.0</td>
+      <td>50.0</td>
+      <td>7.0</td>
+      <td>25.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-209935.432260</td>
+      <td>139.501305</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>simple_median</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>standard</td>
+      <td>3</td>
+      <td>pam</td>
+      <td>random</td>
+      <td>0.020</td>
+      <td>robust_mahalanobis</td>
+      <td>jaccard</td>
+      <td>71</td>
+      <td>50</td>
+      <td>5</td>
+      <td>10</td>
+      <td>10</td>
+      <td>0.1</td>
+      <td>30</td>
+      <td>0.02</td>
+      <td>0.75</td>
+      <td>72.0</td>
+      <td>3.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MAD</td>
+      <td>-226212.430843</td>
+      <td>74.882898</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>simple_median</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>standard</td>
+      <td>3</td>
+      <td>pam</td>
+      <td>random</td>
+      <td>0.010</td>
+      <td>mahalanobis</td>
+      <td>jaccard</td>
+      <td>64</td>
+      <td>50</td>
+      <td>24</td>
+      <td>23</td>
+      <td>20</td>
+      <td>0.0</td>
+      <td>70</td>
+      <td>0.20</td>
+      <td>0.29</td>
+      <td>51.0</td>
+      <td>20.0</td>
+      <td>3.0</td>
+      <td>22.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-249498.494575</td>
+      <td>63.639676</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>simple_median</td>
+      <td>simple_most_frequent</td>
+      <td>True</td>
+      <td>ordinal</td>
+      <td>False</td>
+      <td>standard</td>
+      <td>5</td>
+      <td>alternate</td>
+      <td>heuristic</td>
+      <td>0.020</td>
+      <td>canberra</td>
+      <td>jaccard</td>
+      <td>91</td>
+      <td>3</td>
+      <td>20</td>
+      <td>7</td>
+      <td>40</td>
+      <td>0.2</td>
+      <td>150</td>
+      <td>0.24</td>
+      <td>0.54</td>
+      <td>105.0</td>
+      <td>5.0</td>
+      <td>14.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>0.1</td>
+      <td>150.0</td>
+      <td>0.0</td>
+      <td>0.78</td>
+      <td>50.0</td>
+      <td>20.0</td>
+      <td>6.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>-259158.519557</td>
+      <td>128.728094</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_best_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;preprocessing__quant__imputer__method&#39;: &#39;simple_mean&#39;,
+ &#39;preprocessing__cat__imputer__method&#39;: &#39;simple_most_frequent&#39;,
+ &#39;preprocessing__quant__scaler__apply&#39;: True,
+ &#39;preprocessing__cat__encoder__method&#39;: &#39;ordinal&#39;,
+ &#39;features_selector__apply&#39;: False,
+ &#39;preprocessing__quant__scaler__method&#39;: &#39;standard&#39;,
+ &#39;clustering_model__n_clusters&#39;: 3,
+ &#39;clustering_model__method&#39;: &#39;pam&#39;,
+ &#39;clustering_model__init&#39;: &#39;heuristic&#39;,
+ &#39;clustering_model__frac_sample_size&#39;: 0.03,
+ &#39;clustering_model__d1&#39;: &#39;minkowski&#39;,
+ &#39;clustering_model__d2&#39;: &#39;sokal&#39;,
+ &#39;clustering_model__estimators__0__n_estimators&#39;: 55,
+ &#39;clustering_model__estimators__0__max_depth&#39;: 40,
+ &#39;clustering_model__estimators__0__min_samples_split&#39;: 12,
+ &#39;clustering_model__estimators__0__min_samples_leaf&#39;: 3,
+ &#39;clustering_model__estimators__1__max_depth&#39;: 3,
+ &#39;clustering_model__estimators__1__lambda&#39;: 0.5,
+ &#39;clustering_model__estimators__1__n_estimators&#39;: 30,
+ &#39;clustering_model__estimators__1__eta&#39;: 0.28,
+ &#39;clustering_model__estimators__1__alpha&#39;: 0.54,
+ &#39;clustering_model__estimators__2__n_estimators&#39;: 51,
+ &#39;clustering_model__estimators__2__max_depth&#39;: 40,
+ &#39;clustering_model__estimators__2__min_samples_split&#39;: 4,
+ &#39;clustering_model__estimators__2__min_samples_leaf&#39;: 11}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_eval</span><span class="o">.</span><span class="n">inner_score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-189925.0336917885
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing"><strong>Data processing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-estimators-usage"><strong>Clustering estimators usage</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-estimators-usage-with-pipelines"><strong>Clustering estimators usage with pipelines</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Scielzo Ortiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
